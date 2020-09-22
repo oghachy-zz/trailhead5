@@ -1,0 +1,50 @@
+<apex:page standardController="BAInsightConfiguration__c" extensions="BAInsightConfiguration" docType="html-5.0" showHeader="true" sidebar="true">
+    <apex:form >
+        <apex:pageBlock title="{!$ObjectType.BAInsightConfiguration__c.Label}" id="thePageBlock">
+            <apex:pageMessages />
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+
+                <apex:commandButton immediate="true" value="Cancel" action="{!cancel}"/>
+
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection showHeader="true" title="BA Insight Configuration" columns="1" collapsible="false">
+                <apex:outputText value="{!$ObjectType.BAInsightConfiguration__c.Fields.BA_Insight_Portal_URL__c.label}"/>
+                <apex:inputText size="100" value="{!bAInsightPortalUrl}"/>
+                <apex:outputText value="{!$ObjectType.BAInsightConfiguration__c.Fields.BA_Insight_Base_URL__c.label}"/>
+                <apex:inputText size="100" value="{!bAInsightBaseUrl}"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection showHeader="true" title="BA Insight / Salesforce Object Field Mapping" columns="4" collapsible="false">
+                <apex:SelectList value="{!selectedObject}" size="1" id="objects">
+                    <apex:selectOptions value="{!Objects}"></apex:selectOptions>
+                    <apex:actionSupport event="onchange" reRender="fields"/>
+                </apex:SelectList>
+                <apex:selectList size="1" id="fields" value="{!selectedObjectField}" >
+                    <apex:selectOptions value="{!ObjectFields}"/>
+                </apex:selectList>
+                <apex:pageBlockSectionItem >
+                <apex:outputText value="BA Insight Field"/>
+                <apex:inputText value="{!selectedBAMapping}"/>
+                </apex:pageBlockSectionItem>
+                <apex:commandButton action="{!addMapping}" value="Add Mapping" id="AddMapping"/>            
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection showHeader="true" title="Existing BA Insight / Salesforce Object Field Mapping" columns="4" collapsible="false"  rendered="{!mappings.size > 0}" >
+                <apex:pageBlockTable value="{!mappings}" var="item" >
+
+                    <apex:column >
+                          <apex:outputLink value="{!URLFOR($Action.BA_Insight_Field_Mapping__c.Delete, Item.Id, ['retURL'='/apex/BAInsightConfiguration_VF'])}" >Delete</apex:outputLink>
+                    </apex:column>
+
+                    <apex:column value="{!item.BA_Salesforce_Object__c}"/> 
+                    <apex:column value="{!item.BA_Salesforce_Object_Field_Name__c}"/> 
+                    <apex:column value="{!item.BA_Insight_Field__c}"/> 
+                    
+                </apex:pageBlockTable>                 
+            </apex:pageBlockSection>
+            
+            
+        </apex:pageBlock>
+    </apex:form>  
+</apex:page>

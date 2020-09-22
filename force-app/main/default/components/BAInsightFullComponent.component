@@ -1,0 +1,7 @@
+<apex:component >
+    <apex:attribute description="frameurl" name="frameurl" type="String" required="true"/>
+    
+    <apex:iframe src="{!frameurl}" id="theFrame" />
+    <script>document.getElementById('theFrame').height = window.innerHeight - 210;</script> 
+    
+</apex:component>

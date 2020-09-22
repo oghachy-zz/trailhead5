@@ -1,0 +1,12 @@
+<apex:page sidebar="false" controller="BAInsightConfiguration">
+    <apex:outputPanel rendered="{!BAInsightPortalURLStatic==''}" >
+        <apex:pageMessage severity="error" summary="BA Insight has not been configured.  Use the following link to complete the BA Insight Configuration." strength="2">        
+        </apex:pageMessage>
+    
+        <apex:outputLink value="/apex/BAInsightConfiguration_VF" >BA Insight Configuration</apex:outputLink>
+    
+    </apex:outputPanel>
+    <c:BAInsightFullComponent rendered="{!BAInsightPortalURLStatic!='' && $CurrentPage.parameters.k=''}" frameurl="{!BAInsightPortalURLStatic}"></c:BAInsightFullComponent>    
+    <c:BAInsightFullComponent rendered="{!BAInsightPortalURLStatic!='' && $CurrentPage.parameters.k!=''}" frameurl="{!BAInsightPortalURLStatic + '?k=' + $CurrentPage.parameters.k}"></c:BAInsightFullComponent>    
+    
+</apex:page>

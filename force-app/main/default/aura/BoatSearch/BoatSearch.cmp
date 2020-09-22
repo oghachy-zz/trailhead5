@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+	<aura:handler name="formSubmit" event="c:FormSubmit" action="{!c.onFormSubmit}"/>
+    <aura:attribute name="selectedBoatId" type="String" />
+    <c:BoatSearchForm />
+    <c:BoatSearchResults aura:id="boatSearchIdForm"/>
+</aura:component>

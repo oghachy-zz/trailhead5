@@ -1,0 +1,9 @@
+<apex:page standardController="Case" extensions="BAInsight" showHeader="false" sidebar="false">
+    <!--
+    if you want to use the messaging create a component and add the following attribute
+    to c:BAInsightInlineComponent sf="&sf=yes" i.e.
+    The Component has the javascript to handle the message See BAInsightCaseComponent for e.g.
+    -->
+    <c:BAInsightInlineComponent sf="&sf=yes" maximizeurl="{!$Page.BAInsightFull_VF + baInsightQuery}" frameurl="{!bAInsightURL}"></c:BAInsightInlineComponent>    
+    <c:BAInsightCaseComponent objectId="{!Id}" emailurl="{!URLFOR($Action.Activity.SendEmail,Case.Id,[p2_lkid=Case.contactId, rtype=LPAD('3',3,'00'), p3_lkid=LEFT(Case.id,15),retURL=URLFOR($Action.Case.View, Case.id)])}" redirectURL="{!redirectUrl}"></c:BAInsightCaseComponent>
+</apex:page>

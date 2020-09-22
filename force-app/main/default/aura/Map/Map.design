@@ -1,0 +1,6 @@
+<design:component >
+
+<design:attribute name="width" label="width" description="" />
+<design:attribute name="height" label="height" description="" />
+
+</design:component>
